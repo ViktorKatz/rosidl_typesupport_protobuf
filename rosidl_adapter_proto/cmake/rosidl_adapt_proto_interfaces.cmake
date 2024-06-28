@@ -18,6 +18,12 @@
 
 find_package(Protobuf REQUIRED CONFIG)
 
+get_cmake_property(_variableNames VARIABLES)
+list (SORT _variableNames)
+foreach (_variableName ${_variableNames})
+    message("${_variableName}=${${_variableName}}")
+endforeach()
+
 find_package(Python COMPONENTS Interpreter)
 if(NOT Python_FOUND)
   message(FATAL_ERROR "Variable 'PYTHON_EXECUTABLE' must not be empty")
