@@ -16,8 +16,10 @@
 #
 # ================================= Apache 2.0 =================================
 
-find_package(PythonInterp REQUIRED)
-if(NOT PYTHON_EXECUTABLE)
+find_package(Protobuf REQUIRED CONFIG)
+
+find_package(Python COMPONENTS Interpreter)
+if(NOT Python_FOUND)
   message(FATAL_ERROR "Variable 'PYTHON_EXECUTABLE' must not be empty")
 endif()
 
@@ -52,6 +54,10 @@ rosidl_write_generator_arguments(
   TEMPLATE_DIR "${rosidl_adapter_proto_TEMPLATE_DIR}"
   TARGET_DEPENDENCIES ${_target_dependencies}
   ADDITIONAL_FILES "${_proto_include_dirs}")
+
+include(CMakePrintHelpers)
+
+cmake_print_variables(PYTHON_EXECUTABLE, rosidl_adapter_proto_BIN, generator_arguments_file, Protobuf_PROTOC_EXECUTABLE)
 
 execute_process(
   COMMAND "${PYTHON_EXECUTABLE}" "${rosidl_adapter_proto_BIN}"
