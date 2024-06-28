@@ -59,8 +59,9 @@ include(CMakePrintHelpers)
 
 message("Does this even work?")
 message("Python executable variable: ${Python_EXECUTABLE}")
-
-cmake_print_variables(Python_EXECUTABLE rosidl_adapter_proto_BIN generator_arguments_file Protobuf_PROTOC_EXECUTABLE)
+message("Rosidl something: ${rosidl_adapter_proto_BIN}")
+message("Generator arguments: ${generator_arguments_file}")
+message("Protoc: ${Protobuf_PROTOC_EXECUTABLE}")
 
 execute_process(
   COMMAND "${Python_EXECUTABLE}" "${rosidl_adapter_proto_BIN}"
