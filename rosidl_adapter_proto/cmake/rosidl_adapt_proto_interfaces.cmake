@@ -58,12 +58,12 @@ rosidl_write_generator_arguments(
 include(CMakePrintHelpers)
 
 message("Does this even work?")
-message("Python executable variable: ${PYTHON_EXECUTABLE}")
+message("Python executable variable: ${Python_EXECUTABLE}")
 
-cmake_print_variables(PYTHON_EXECUTABLE rosidl_adapter_proto_BIN generator_arguments_file Protobuf_PROTOC_EXECUTABLE)
+cmake_print_variables(Python_EXECUTABLE rosidl_adapter_proto_BIN generator_arguments_file Protobuf_PROTOC_EXECUTABLE)
 
 execute_process(
-  COMMAND "${PYTHON_EXECUTABLE}" "${rosidl_adapter_proto_BIN}"
+  COMMAND "${Python_EXECUTABLE}" "${rosidl_adapter_proto_BIN}"
   --generator-arguments-file "${generator_arguments_file}"
   --protoc-path "${Protobuf_PROTOC_EXECUTABLE}"
   ERROR_VARIABLE error
