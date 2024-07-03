@@ -18,11 +18,28 @@
 
 find_package(Protobuf REQUIRED CONFIG)
 
-get_cmake_property(_variableNames VARIABLES)
-list (SORT _variableNames)
-foreach (_variableName ${_variableNames})
-    message("${_variableName}=${${_variableName}}")
-endforeach()
+# Set the protoc Executable
+# Protoc path retrieval from target taken from the CMake find module code of Protobuf
+if(NOT Protobuf_PROTOC_EXECUTABLE AND TARGET protobuf::protoc)
+  get_target_property(Protobuf_PROTOC_EXECUTABLE protobuf::protoc
+    IMPORTED_LOCATION_RELEASE)
+  if(NOT EXISTS "${Protobuf_PROTOC_EXECUTABLE}")
+    get_target_property(Protobuf_PROTOC_EXECUTABLE protobuf::protoc
+      IMPORTED_LOCATION_RELWITHDEBINFO)
+  endif()
+  if(NOT EXISTS "${Protobuf_PROTOC_EXECUTABLE}")
+    get_target_property(Protobuf_PROTOC_EXECUTABLE protobuf::protoc
+      IMPORTED_LOCATION_MINSIZEREL)
+  endif()
+  if(NOT EXISTS "${Protobuf_PROTOC_EXECUTABLE}")
+    get_target_property(Protobuf_PROTOC_EXECUTABLE protobuf::protoc
+      IMPORTED_LOCATION_DEBUG)
+  endif()
+  if(NOT EXISTS "${Protobuf_PROTOC_EXECUTABLE}")
+    get_target_property(Protobuf_PROTOC_EXECUTABLE protobuf::protoc
+      IMPORTED_LOCATION_NOCONFIG)
+  endif()
+endif()
 
 find_package(Python COMPONENTS Interpreter)
 if(NOT Python_FOUND)
