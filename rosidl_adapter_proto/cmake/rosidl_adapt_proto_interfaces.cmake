@@ -16,6 +16,14 @@
 #
 # ================================= Apache 2.0 =================================
 
+include(CMakePrintHelpers)
+message("ALL VARIABLES")
+get_cmake_property(_variableNames VARIABLES)
+list (SORT _variableNames)
+foreach (_variableName ${_variableNames})
+    message("${_variableName}=${${_variableName}}")
+endforeach()
+
 find_package(PythonInterp REQUIRED)
 if(NOT PYTHON_EXECUTABLE)
   message(FATAL_ERROR "Variable 'PYTHON_EXECUTABLE' must not be empty")
