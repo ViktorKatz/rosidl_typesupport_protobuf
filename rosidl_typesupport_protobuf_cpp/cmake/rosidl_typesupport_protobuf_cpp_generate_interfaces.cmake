@@ -16,7 +16,7 @@
 #
 # ================================= Apache 2.0 =================================
 
-find_package(Protobuf REQUIRED)
+find_package(Protobuf REQUIRED CONFIG)
 
 find_package(rosidl_adapter_proto REQUIRED)
 find_package(rosidl_typesupport_protobuf REQUIRED)
