@@ -2,7 +2,9 @@
 # rosidl_typesupport_protobuf_c/rosidl_typesupport_protobuf_c-extras.cmake.in
 
 message("Test before protobug (Protobuf_PROTOC_EXECUTABLE: ${Protobuf_PROTOC_EXECUTABLE})")
-execute_process(COMMAND echo "I am the echo")
+execute_process(COMMAND find /__w/rosidl_typesupport_protobuf -name "*ProtobufConfig.cmake*")
+execute_process(COMMAND find /__w/rosidl_typesupport_protobuf -name "*protobuf-config.cmake*")
+
 find_package(Protobuf REQUIRED CONFIG)
 
 if(NOT Protobuf_FOUND)
